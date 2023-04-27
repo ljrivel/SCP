@@ -1,0 +1,371 @@
+
+
+/* Path: Login.css Css del Login */
+body{
+  background: rgb(250, 243, 220);
+}
+
+.sizeText{
+  font-size: 300%;
+}
+
+.Fixrow{
+  background: white;
+  border-radius: 30px;
+  box-shadow: 12px 12px 22px grey;
+}
+
+img{
+  width: 125%;
+  height: 550px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.contariner{
+  width: 10%;
+}
+
+.btn1{
+  border: none;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  background-color: #f09e2d;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn1:hover{
+  background-color: white;
+  border: 1px solid ;
+  color: #f09e2d;
+}
+
+
+.Centro{
+  transform: translate(0, 85%);
+
+}
+
+
+.fix{
+  transform: translate(30%, 0);
+}
+
+.minifix{
+  transform: translate(10%, 0);
+}
+
+
+
+/* Register.css Css del register */
+
+.fixR{
+  transform: translate(22%, 0);
+}
+
+.CenterRTitulo{
+  transform: translate(38%, 5px);
+}
+
+.CenterRProducto{
+  transform: translate(28%, 5px);
+}
+
+.CenterRTituloF{
+  transform: translate(17%, 5px);
+}
+
+.CentroR{
+  transform: translate(0, 33%);
+  width: 30%;
+}
+
+.CentroRA{
+  transform: translate(0, 10%);
+  width: 30%;
+}
+
+
+.fixMap{
+  transform: translate(30%, 0);
+}
+
+.item{
+  margin-left: 2%;
+  width: 30%;
+  color: white;
+  float: left;
+  color: black;
+  height: 600px;
+}
+
+.CardU{
+  padding-top: 5%;
+  
+}
+
+/* Path: Nav.css Css del NavBar */
+
+
+.navegation{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px grey;
+}
+
+
+
+.btnNav{
+
+    background-color: #fdb146;
+    border: 1px solid ;
+    color: white;
+
+}
+  
+.btnNav:hover{
+    background-color: white;
+    border: 1px solid ;
+    color: #fdb146;
+}
+
+
+.TextNav{
+  font-weight: bold;
+  color: black;
+  
+}
+
+.BackNav{
+  background-color: aqua;
+}
+
+
+/* CardsI for components Cards */
+
+.CardI{
+  background: white;
+  border-radius: 12px;
+  transform: translateX(35%);
+  box-shadow: 3px 3px 6px grey;
+  margin-left: 7%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 20%;
+  color: white;
+  float: left;
+  color: black;
+  height: 200px;
+}
+
+.CardText{
+  text-align: center;
+}
+
+.cardButton{
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+
+/* Css productos  */
+.ProductBorder{
+  border-top: 2px solid #cc8016;
+}
+
+.FilterBorder{
+  border-right: 2px solid #cc8016;
+}
+
+.Borderleft{
+  border-left: 2px solid #cc8016;
+}
+
+.FilterInput{
+
+  height: 30px;
+  border: 1px solid;
+  border-color: black;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 2%;
+  width: 50%;
+  border-radius: 4px;
+  
+}
+
+.FilterInput2{
+
+  height: 30px;
+  border: 1px solid;
+  border-color: black;
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 2%;
+  width: 100%;
+  border-radius: 4px;
+  
+}
+
+.Filterbtn{
+  height: 30px;
+  width: 20%;
+  border: 1px solid;
+  background-color: #fdb146;
+  border: 1px solid ;
+  color: white;
+  border-radius: 4px;
+
+}
+
+.Filterbtn:hover{
+  background-color: white;
+  border: 1px solid ;
+  color: #fdb146;
+}
+
+
+.fixFilter{
+  transform: translate(10%, 10%);
+}
+
+.row{
+  width: 100%;
+}
+
+
+/* Card for employees */
+
+.ImageCard{
+  width: 90%;
+  height: 210px;
+
+}
+
+.CardP{
+  background: white;
+  border-radius: 12px;
+  transform: translateX(35%);
+  box-shadow: 3px 3px 6px grey;
+  margin-left: 7%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 20%;
+  color: white;
+  float: left;
+  color: black;
+  height: 400px;
+}
+
+.CardPMini{
+  background: white;
+  border-radius: 12px;
+  transform: translateX(35%);
+  box-shadow: 3px 3px 6px grey;
+  margin-left: 7%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 20%;
+  color: white;
+  float: left;
+  color: black;
+  height: 150px;
+}
+
+
+/* Path: Product.css  only one*/
+
+
+.Products{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 300ms ease-in-out;
+  background-color: rgba(0, 0, 0,.6);
+  z-index: 2;
+  padding-bottom: 5rem;
+
+}
+
+
+/* Card for employees */
+
+.CardE{
+  background: white;
+  border-radius: 12px;
+  transform: translateX(35%);
+  box-shadow: 3px 3px 6px grey;
+  margin-left: 7%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: 20%;
+  color: white;
+  float: left;
+  color: black;
+  height: 500px;
+}
+
+.Be1{
+  margin-left: 16%;
+  background-color: #fdb146;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.Be{
+  margin-left: 40%;
+  background-color: #fdb146;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+/* Product */
+
+.CenterProduct{
+  transform: translate(0, 30%);
+}
+
+.fixProduct{
+  transform: translate(35%, 150%);
+}
+
+.fixButtonsArrow{
+  transform: translate(900%, 520%);
+}
+
+.fixButton{
+  transform: translate(480%, 580%);
+}
+
+.fixCounter{
+  font-weight: bold;
+  transform: translate(80%, 793%);
+}
+
+/* Cart */
+
+.rowCart{
+  width: 70%;
+}
+
+
+/* Card for product carts */
+
+.ImageCardMini{
+  width: 50%;
+  height: 210px;
+  transform: translate(50%, 0);
+
+}
+
+/* Card for product sedes */
+
+.CardSedeHorario{
+  transform: translate(60%, -5%);
+}
