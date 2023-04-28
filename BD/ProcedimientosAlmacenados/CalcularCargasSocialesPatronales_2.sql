@@ -7,15 +7,10 @@ CREATE OR ALTER PROCEDURE CalcularCargasSocialesPatronales (
 AS BEGIN
 SET NOCOUNT ON;
 BEGIN TRY
-	IF EXISTS (	SELECT id_cargas_sociales_patronales
+	IF NOT EXISTS (	SELECT id_cargas_sociales_patronales
 				FROM CargasSocialesPatronales
 				WHERE id_mes_planilla = @inIdMesPlanilla)
 	BEGIN
-		SELECT	50001 AS ErrorNumber, 
-				'Error: Ya se realizó el cálculo de las cargas sociales patronales para ese mes' AS ErrorMessage;	
-					
-	END;
-	ELSE BEGIN
 		DECLARE @suma_salarios MONEY;
 		SELECT @suma_salarios = SUM(salario)
 		FROM Empleado
@@ -27,10 +22,11 @@ BEGIN TRY
 
 		COMMIT TRANSACTION cs_patronales;
 
-		SELECT	CSP.monto monto_cs_patronales
-		FROM CargasSocialesPatronales CSP
-		WHERE CSP.id_mes_planilla = @inIdMesPlanilla;
 	END;
+
+	SELECT	CSP.monto monto_cs_patronales
+	FROM CargasSocialesPatronales CSP
+	WHERE CSP.id_mes_planilla = @inIdMesPlanilla;
 
 END TRY
 BEGIN CATCH
