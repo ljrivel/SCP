@@ -1,6 +1,19 @@
 USE SCP
 GO
 
+--CREATE OR ALTER FUNCTION GenerarAleatorio (
+--	@inInicio INT,
+--	@inFin INT
+--)
+--RETURNS INT
+--AS BEGIN
+--	DECLARE @aleatorio INT;
+--	SET @aleatorio = FLOOR(RAND()*(@inInicio+1));
+--	RETURN @aleatorio;
+
+--END;
+--GO
+
 CREATE OR ALTER PROCEDURE InsertarDatos
 AS BEGIN
 BEGIN TRY
