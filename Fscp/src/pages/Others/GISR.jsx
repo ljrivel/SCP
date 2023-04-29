@@ -36,7 +36,7 @@ export class GISR extends Component {
       data: [],
       meses: [],
       megaData: [],
-      idMes: 2,
+      idMes: 1,
       cargando: true,
       pag: 0,
       update: false,
@@ -47,13 +47,14 @@ export class GISR extends Component {
   Generar = async () => {
     const nuevosElementos = [];
     await axios
-      .post('http://localhost:3001/CIR', { id_mes: this.state.idMes })
+      .post('http://localhost:3001/CIR', {
+        id_mes: window.location.pathname.split('/')[2],
+      })
       .then((response) => {
         for (let i = 1; i <= 10000; i++) {
           nuevosElementos.push(response.data[i]);
         }
         this.setState({ megaData: response.data });
-        console.log(response.data);
       });
     this.setState({ data: nuevosElementos });
     this.setState({ cargando: false });
@@ -75,14 +76,12 @@ export class GISR extends Component {
       }
 
       this.setState({ data: nuevosElementos });
-      console.log('nuevos', nuevosElementos);
       this.setState({ cargando: false });
       this.setState({ update: false });
     }
   }
 
   async componentDidMount() {
-    this.setState({ idMes: window.location.pathname.split('/')[2] });
     this.Generar();
   }
 
@@ -91,7 +90,6 @@ export class GISR extends Component {
   }
 
   nextPage = () => {
-    console.log('next');
     this.setState({ pag: this.state.pag + 1 });
     this.setState({ update: true });
   };
@@ -101,7 +99,6 @@ export class GISR extends Component {
   }
 
   beginPage = () => {
-    console.log('begin');
     if (this.state.pag !== 0) {
       this.setState({ pag: this.state.pag - 1 });
       this.setState({ update: true });

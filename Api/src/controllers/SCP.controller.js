@@ -2,7 +2,7 @@ import { getConnectionAdmin } from '../ConnectionSqlAdmin';
 
 export const CalcularCargasSociales = async (req, res) => {
   const pool = await getConnectionAdmin();
-
+  console.log(req.body.id_mes);
   const result = await pool
     .request()
     .input('id_mes', req.body.id_mes)

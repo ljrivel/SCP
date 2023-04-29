@@ -19,7 +19,7 @@ export class Start extends Component {
 
     this.state = {
       meses: [],
-      idMes: 0,
+      idMes: 1,
     };
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
@@ -28,15 +28,11 @@ export class Start extends Component {
     this.setState({ idMes: selectedOption.id_mes_planilla });
   }
 
-  Go_GISR() {
+  GoGISR() {
     window.location.href = `/GISR/${this.state.idMes}`;
   }
 
-  Go_GCCP() {
-    window.location.href = `/GCCP/${this.state.idMes}`;
-  }
-
-  Go_GCCS() {
+  GoGCCS() {
     window.location.href = `/GCCS/${this.state.idMes}`;
   }
 
@@ -49,13 +45,32 @@ export class Start extends Component {
     });
   }
 
-  Cargas_Generater() {
-    Swal.fire({
-      title: 'Reporte de Cargas Generado',
-      text: 'El reporte de cargas se ha generado con exito',
-      icon: 'success',
-      confirmButtonText: 'ok',
-    });
+  async Cargas_Generater() {
+    await axios
+      .post('http://localhost:3001/CCP', { id_mes: this.state.idMes })
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data[0].monto_cs_patronales);
+        const resultado = response.data[0].monto_cs_patronales;
+        // eslint-disable-next-line dot-notation
+        console.log(response.data[0]['monto_cs_patronales']);
+        console.log(resultado);
+        if (response.data[0].monto_cs_patronales >= 0) {
+          Swal.fire({
+            title: 'Cargas Patronal Generada',
+            text: `El monto del mes es de ₡${resultado}`,
+            icon: 'success',
+            confirmButtonText: 'ok',
+          });
+        } else {
+          Swal.fire({
+            title: 'Cargas Patronal Generada',
+            text: 'No se ha generado el monto del mes',
+            icon: 'error',
+            confirmButtonText: 'ok',
+          });
+        }
+      });
   }
 
   async componentDidMount() {
@@ -96,12 +111,19 @@ export class Start extends Component {
                   className="btn1 mt-3 mb-4"
                   onClick={() => this.Cargas_Generater()}
                 >
-                  Generar Cargas
+                  Generar Cargas Patronales
                 </button>
                 <button
                   type="button"
                   className="btn1 mt-3 mb-4"
-                  onClick={() => this.Go_GISR()}
+                  onClick={() => this.GoGCCS()}
+                >
+                  Generar Cargas Sociales
+                </button>
+                <button
+                  type="button"
+                  className="btn1 mt-3 mb-4"
+                  onClick={() => this.GoGISR()}
                 >
                   Generar Impuestos sobre el salario de la renta
                 </button>
