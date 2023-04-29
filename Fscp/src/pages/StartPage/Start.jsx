@@ -1,13 +1,43 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable prefer-const */
+/* eslint-disable no-console */
+/* eslint-disable react/sort-comp */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-unused-state */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-unused-class-component-methods */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import '../../Style.css';
 import Swal from 'sweetalert2';
+import Select from 'react-select';
+import axios from 'axios';
 
 export class Start extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      meses: [],
+      idMes: 0,
+    };
+    this.handleSelectionChange = this.handleSelectionChange.bind(this);
+  }
+
+  handleSelectionChange(selectedOption) {
+    this.setState({ idMes: selectedOption.id_mes_planilla });
+  }
+
   Go_GISR() {
-    window.location.href = '/GISR';
+    window.location.href = `/GISR/${this.state.idMes}`;
+  }
+
+  Go_GCCP() {
+    window.location.href = `/GCCP/${this.state.idMes}`;
+  }
+
+  Go_GCCS() {
+    window.location.href = `/GCCS/${this.state.idMes}`;
   }
 
   Report_Generater() {
@@ -28,7 +58,14 @@ export class Start extends Component {
     });
   }
 
+  async componentDidMount() {
+    await axios.get('http://localhost:3001/Meses').then((response) => {
+      this.setState({ meses: response.data });
+    });
+  }
+
   render() {
+    const { selectedOption } = this.state;
     return (
       <section>
         {/* Card */}
@@ -36,6 +73,13 @@ export class Start extends Component {
           <div className=" Fixrow g-0">
             {/* Nombre del sistema */}
             <h1 className="font-weight-bold text-center sizeText">SCP</h1>
+            <Select
+              value={selectedOption}
+              options={this.state.meses}
+              onChange={this.handleSelectionChange}
+              getOptionValue={(option) => option.id_mes_planilla}
+              getOptionLabel={(option) => option.rango}
+            />
 
             {/* Botones del sistema */}
             <div className="fix">
