@@ -36,25 +36,34 @@ export class Start extends Component {
     window.location.href = `/GCCS/${this.state.idMes}`;
   }
 
-  Report_Generater() {
-    Swal.fire({
-      title: 'Reporte CCV Generado',
-      text: 'El reporte CCV se ha generado con exito',
-      icon: 'success',
-      confirmButtonText: 'ok',
-    });
+  async Report_Generater() {
+    await axios
+      .post('http://localhost:3001/GenerarCSV', { id_mes: this.state.idMes })
+      .then((response) => {
+        if (response.data === 'Archivo CSV creado correctamente') {
+          Swal.fire({
+            title: 'Reporte CCV Generado',
+            text: 'El reporte CCV se ha generado con exito',
+            icon: 'success',
+            confirmButtonText: 'ok',
+          });
+        } else {
+          Swal.fire({
+            title: 'Reporte CCV NO Generado',
+            text: 'No se ha generado el reporte mensual CCV',
+            icon: 'error',
+            confirmButtonText: 'ok',
+          });
+        }
+      });
   }
 
   async Cargas_Generater() {
     await axios
       .post('http://localhost:3001/CCP', { id_mes: this.state.idMes })
       .then((response) => {
-        console.log(response.data);
-        console.log(response.data[0].monto_cs_patronales);
         const resultado = response.data[0].monto_cs_patronales;
         // eslint-disable-next-line dot-notation
-        console.log(response.data[0]['monto_cs_patronales']);
-        console.log(resultado);
         if (response.data[0].monto_cs_patronales >= 0) {
           Swal.fire({
             title: 'Cargas Patronal Generada',
@@ -64,7 +73,7 @@ export class Start extends Component {
           });
         } else {
           Swal.fire({
-            title: 'Cargas Patronal Generada',
+            title: 'Cargas Patronal NO Generada',
             text: 'No se ha generado el monto del mes',
             icon: 'error',
             confirmButtonText: 'ok',
