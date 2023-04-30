@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-access-state-in-setstate */
@@ -28,7 +27,7 @@ import axios from 'axios';
 import '../../Style.css';
 
 // eslint-disable-next-line react/prefer-stateless-function
-export class GISR extends Component {
+export class GCCS extends Component {
   constructor(props) {
     super(props);
 
@@ -46,8 +45,9 @@ export class GISR extends Component {
 
   Generar = async () => {
     const nuevosElementos = [];
+
     await axios
-      .post('http://localhost:3001/CIR', {
+      .post('http://localhost:3001/CCS', {
         id_mes: window.location.pathname.split('/')[2],
       })
       .then((response) => {
@@ -55,6 +55,7 @@ export class GISR extends Component {
           nuevosElementos.push(response.data[i]);
         }
         this.setState({ megaData: response.data });
+        console.log(response.data);
       });
     this.setState({ data: nuevosElementos });
     this.setState({ cargando: false });
@@ -90,6 +91,7 @@ export class GISR extends Component {
   }
 
   nextPage = () => {
+    console.log('next');
     this.setState({ pag: this.state.pag + 1 });
     this.setState({ update: true });
   };
@@ -99,6 +101,7 @@ export class GISR extends Component {
   }
 
   beginPage = () => {
+    console.log('begin');
     if (this.state.pag !== 0) {
       this.setState({ pag: this.state.pag - 1 });
       this.setState({ update: true });
@@ -127,13 +130,12 @@ export class GISR extends Component {
             </button>
           </div>
           <div>
-            <h1 className="centerT">GISR</h1>
+            <h1 className="centerT">GCCS</h1>
             <table className="table">
               <thead>
                 <tr>
                   <th>Cedula</th>
-                  <th>Creditos Familiares</th>
-                  <th>Impuesto de Renta</th>
+                  <th>Monto Cargas Sociales</th>
                 </tr>
               </thead>
 
@@ -141,8 +143,7 @@ export class GISR extends Component {
                 {this.state.data.map((item, index) => (
                   <tr key={index}>
                     <td>{item.cedula}</td>
-                    <td>{item.creditos_familiares}</td>
-                    <td>{item.impuesto_renta}</td>
+                    <td>{item.monto_cargas_sociales}</td>
                   </tr>
                 ))}
               </tbody>
@@ -154,4 +155,4 @@ export class GISR extends Component {
   }
 }
 
-export default GISR;
+export default GCCS;
