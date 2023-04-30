@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-access-state-in-setstate */
@@ -110,7 +111,12 @@ export class GCCS extends Component {
 
   render() {
     if (this.state.cargando) {
-      return <div>Cargando...</div>;
+      return (
+        <div className="loading-screen">
+          <div className="loader"></div>
+          <div className="message">Cargando...</div>
+        </div>
+      );
     } else {
       return (
         <>
