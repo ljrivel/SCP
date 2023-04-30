@@ -19,7 +19,7 @@ CREATE TABLE Empleado (
 	nombre VARCHAR(32) NOT NULL,
 	apellido1 VARCHAR(32) NOT NULL,
 	apellido2 VARCHAR(32) NOT NULL,
-	fecha_nacimiento VARCHAR(32) NOT NULL,
+	fecha_nacimiento DATETIME NOT NULL,
 	salario MONEY NOT NULL,
 	conyuge BIT NOT NULL,
 	hijos_dependientes INT NOT NULL,

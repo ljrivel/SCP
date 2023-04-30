@@ -1,18 +1,36 @@
 USE SCP
 GO
 
---CREATE OR ALTER FUNCTION GenerarAleatorio (
---	@inInicio INT,
---	@inFin INT
---)
---RETURNS INT
---AS BEGIN
---	DECLARE @aleatorio INT;
---	SET @aleatorio = FLOOR(RAND()*(@inInicio+1));
---	RETURN @aleatorio;
+CREATE OR ALTER FUNCTION GenerarConyuge (
+	@inCedula VARCHAR(10)
+)
+RETURNS BIT
+AS BEGIN
+	DECLARE @numero INT
+	SET @numero = CAST(SUBSTRING(@inCedula, 2, LEN(@inCedula)) AS INT);
 
---END;
---GO
+	IF @numero % 3 = 0 RETURN 1;
+
+	RETURN 0;
+END
+GO
+
+CREATE OR ALTER FUNCTION GenerarHijosDependientes (
+	@inCedula VARCHAR(10)
+)
+RETURNS INT
+AS BEGIN
+	DECLARE @numero INT
+
+	SET @numero = CAST(SUBSTRING(@inCedula, 3, LEN(@inCedula)) AS INT);
+
+	IF @numero % 3 = 0 RETURN 2;
+
+	IF @numero % 2 = 0 RETURN 1;
+
+	RETURN 0;
+END;
+GO
 
 CREATE OR ALTER PROCEDURE InsertarDatos
 AS BEGIN
@@ -37,14 +55,14 @@ BEGIN TRY
 	INSERT INTO Empleado (id_departamento, id_organizacion, nombre, apellido1, apellido2, fecha_nacimiento, salario, conyuge, hijos_dependientes, cedula)
 	SELECT	CAST(CAST(Departamento AS FLOAT) AS INT)  AS Departamento,
 			CAST(CAST(Organizacion AS FLOAT) AS INT), 
-			nombre, 
-			apellido1, 
-			apellido2, 
-			fecha_nacimiento, 
+			SUBSTRING(nombre, 2, LEN(nombre) - 2), 
+			SUBSTRING(apellido1, 2, LEN(apellido1) - 2), 
+			SUBSTRING(apellido2, 2, LEN(apellido2) - 2), 
+			SUBSTRING(fecha_nacimiento, 2, LEN(fecha_nacimiento) - 2), 
 			salario, 
-			FLOOR(RAND()*2), -- Aleatorio entre 0 y 1
-			FLOOR(RAND()*3), -- Aleatorio entre 0 y 2
-			cedula
+			dbo.GenerarConyuge(cedula),
+			dbo.GenerarHijosDependientes(cedula),
+			SUBSTRING(cedula, 2, LEN(cedula) - 2)
 	FROM #temporal;
 
 	COMMIT TRANSACTION insertar_datos;
