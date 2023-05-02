@@ -44,6 +44,7 @@ export class GCCS extends Component {
     this.handleSelectionChange = this.handleSelectionChange.bind(this);
   }
 
+  /* Realiza la peticion de la informacion del calculo de cargas sociales de los empleados */
   Generar = async () => {
     const nuevosElementos = [];
 
@@ -62,6 +63,8 @@ export class GCCS extends Component {
     this.setState({ cargando: false });
   };
 
+  /* Actualiza los 10000 que se van a mostrar en la pagina
+  En sintexis actualiza el componente */
   componentDidUpdate() {
     if (this.state.update !== false) {
       const nuevosElementos = [];
@@ -83,26 +86,24 @@ export class GCCS extends Component {
     }
   }
 
+  /* Funcion al montar el componente */
   async componentDidMount() {
     this.Generar();
   }
 
-  handleSelectionChange(selectedOption) {
-    this.setState({ idMes: selectedOption.value });
-  }
-
+  /* Cambia la data a los 10000 datos siguiente */
   nextPage = () => {
-    console.log('next');
     this.setState({ pag: this.state.pag + 1 });
     this.setState({ update: true });
   };
 
+  /* Va la pagina principal del sistema */
   GoHome() {
     window.location.href = '/';
   }
 
+  /* Cambia la data a los 10000 datos anteriores */
   beginPage = () => {
-    console.log('begin');
     if (this.state.pag !== 0) {
       this.setState({ pag: this.state.pag - 1 });
       this.setState({ update: true });
@@ -110,6 +111,7 @@ export class GCCS extends Component {
   };
 
   render() {
+    /* Muestra el mensaje cargando mientras la pagina carga */
     if (this.state.cargando) {
       return (
         <div className="loading-screen">
@@ -118,6 +120,7 @@ export class GCCS extends Component {
         </div>
       );
     } else {
+      /* Pagina Renderizando la informacion completa */
       return (
         <>
           <div className="contenedor">
