@@ -1,15 +1,18 @@
 USE SCP
 GO
 
+-- Cálculo mensual del Impuesto de Renta al salario
 CREATE OR ALTER PROCEDURE CalcularImpuestoRentaMesPlanilla (
 	@inIdMesPlanilla INT
 )
 AS BEGIN
 SET NOCOUNT ON;
 BEGIN TRY
-
+	
+	-- Revisar que no se hayan realizado los cálculos de ese mes
 	IF NOT EXISTS (SELECT id_impuesto_renta FROM ImpuestoRenta WHERE id_mes_planilla = @inIdMesPlanilla)
 	BEGIN
+		-- Realizar los cálculos
 		BEGIN TRANSACTION impuestoRenta;
 		INSERT INTO ImpuestoRenta (id_mes_planilla, id_empleado, monto, monto_creditos_familiares)
 		SELECT	@inIdMesPlanilla,
@@ -22,6 +25,7 @@ BEGIN TRY
 		COMMIT TRANSACTION impuestoRenta;
 	END;
 
+	-- Retornar los resultados de los cálculos de ese mes
 	SELECT	E.cedula cedula,
 			IR.monto impuesto_renta,
 			IR.monto_creditos_familiares creditos_familiares
@@ -31,6 +35,7 @@ BEGIN TRY
 
 END TRY
 BEGIN CATCH
+	-- Manejar errores
 	ROLLBACK TRANSACTION impuestoRenta;
 	SELECT	ERROR_NUMBER() AS ErrorNumber, 
 			ERROR_MESSAGE() AS ErrorMessage;
