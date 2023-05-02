@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable operator-linebreak */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -107,7 +108,12 @@ export class GISR extends Component {
 
   render() {
     if (this.state.cargando) {
-      return <div>Cargando...</div>;
+      return (
+        <div className="loading-screen">
+          <div className="loader"></div>
+          <div className="message">Cargando...</div>
+        </div>
+      );
     } else {
       return (
         <>

@@ -45,7 +45,7 @@ BEGIN TRY
 								Departamento VARCHAR(10));
 
 	BULK INSERT [#temporal]
-	FROM 'C:\Users\50684\Desktop\Datos-Completos.csv'
+	FROM 'C:\Users\ljriv\Downloads\Datos-Completos.csv'
 	WITH (
 			FIELDTERMINATOR = ';', 
 			ROWTERMINATOR = '\n', 
