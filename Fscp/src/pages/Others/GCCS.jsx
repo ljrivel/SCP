@@ -149,7 +149,7 @@ export class GCCS extends Component {
                 {this.state.data.map((item, index) => (
                   <tr key={index}>
                     <td>{item.cedula}</td>
-                    <td>{item.monto_cargas_sociales}</td>
+                    <td> ₡ {item.monto_cargas_sociales}</td>
                   </tr>
                 ))}
               </tbody>

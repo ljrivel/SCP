@@ -29,10 +29,7 @@
   100% { transform: rotate(360deg); }
 }
 
-
-
 /* Path: GISR */
-
 .contenedor {
   display: flex;
   justify-content: space-between;
@@ -154,12 +151,9 @@ img{
   color: #f09e2d;
 }
 
-
 .Centro{
   transform: translate(0, 60%);
-
 }
-
 
 .fix{
   transform: translate(30%, 0);
@@ -168,8 +162,3 @@ img{
 .minifix{
   transform: translate(10%, 0);
 }
-
-
-
-
-

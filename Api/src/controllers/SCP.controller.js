@@ -13,7 +13,7 @@ export const CalcularCargasSociales = async (req, res) => {
       { id: 'cargas_sociales_trabajador', title: 'CargasSociales' },
     ],
   });
-
+  
   const pool = await getConnectionAdmin();
   console.log(req.body.id_mes);
   const result = await pool

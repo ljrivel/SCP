@@ -147,8 +147,8 @@ export class GISR extends Component {
                 {this.state.data.map((item, index) => (
                   <tr key={index}>
                     <td>{item.cedula}</td>
-                    <td>{item.creditos_familiares}</td>
-                    <td>{item.impuesto_renta}</td>
+                    <td>₡ {item.creditos_familiares}</td>
+                    <td>₡ {item.impuesto_renta}</td>
                   </tr>
                 ))}
               </tbody>
